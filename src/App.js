@@ -4,6 +4,8 @@ import Header from './components/Header';
 import CreatePost from './components/CreatePost';
 import PostList from './components/PostList';
 
+export const UserContext = React.createContext();
+
 function App() {
   const [user, setUser] = React.useState('');
   const [posts, setPosts] = React.useState([]);
@@ -21,11 +23,11 @@ function App() {
   }
 
   return (
-    <>
+    <UserContext.Provider value={user}>
       <Header user={user} setUser={setUser} />
       <CreatePost user={user} handleAddPost={handleAddPost} />
       <PostList posts={posts} />
-    </>
+    </UserContext.Provider>
   );
 }
 
