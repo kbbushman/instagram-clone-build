@@ -34,6 +34,7 @@ function LoginPage() {
               <TextField
                 variant='filled'
                 label='Password'
+                type='password'
                 margin='dense'
                 className={classes.textField}
                 autoComplete='current-password'
@@ -81,14 +82,14 @@ function LoginPage() {
   );
 }
 
-export function LoginWithFacebook({ color, iconColor }) {
+export function LoginWithFacebook({ color, iconColor, variant }) {
   const classes = useLoginPageStyles();
   const facebookIcon = iconColor === 'blue'
     ? FacebookIconBlue
     : FacebookIconWhite;
 
   return (
-    <Button color={color} fullWidth>
+    <Button color={color} variant={variant} fullWidth>
       <img
         alt='Facebook Icon'
         src={facebookIcon}
