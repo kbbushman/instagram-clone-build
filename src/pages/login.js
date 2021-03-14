@@ -34,7 +34,6 @@ function LoginPage() {
               <TextField
                 variant='filled'
                 label='Password'
-                type='password'
                 margin='dense'
                 className={classes.textField}
                 autoComplete='current-password'
