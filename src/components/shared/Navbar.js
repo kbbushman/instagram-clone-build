@@ -1,10 +1,33 @@
-import React from "react";
+import React from 'react';
+import { AppBar } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { useNavbarStyles } from "../../styles";
+import logo from '../../images/logo.png';
 
 function Navbar() {
-  useNavbarStyles();
+  const classes = useNavbarStyles();
 
-  return <div>Navbar</div>;
+  return (
+    <AppBar className={classes.appBar}>
+      <section className={classes.section}>
+        <Logo />
+      </section>
+    </AppBar>
+  );
+}
+
+function Logo() {
+  const classes = useNavbarStyles();
+
+  return (
+    <div className={classes.logoContainer}>
+      <Link to='/'>
+        <div className={classes.logoWrapper}>
+          <img src={logo} alt='Instagram' className={classes.logo} />
+        </div>
+      </Link>
+    </div>
+  );
 }
 
 export default Navbar;
