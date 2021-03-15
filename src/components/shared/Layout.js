@@ -9,7 +9,7 @@ function Layout({ children, minimalNavbar, title, marginTop = 60 }) {
   return (
     <section className={classes.section}>
       <SEO title={title} />
-      <Navbar minimalNavbar />
+      <Navbar minimalNavbar={minimalNavbar} />
       <main className={classes.main} style={{ marginTop }}>
         <section className={classes.childrenWrapper}>
           <div className={classes.children}>
