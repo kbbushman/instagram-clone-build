@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { AppBar, Avatar, Fade, Grid, Hidden, InputBase, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Avatar,
+  Fade,
+  Grid,
+  Hidden,
+  InputBase,
+  Typography,
+  Zoom
+} from '@material-ui/core';
 import {
   LoadingIcon,
   AddIcon,
@@ -12,7 +21,12 @@ import {
   HomeActiveIcon,
 
 } from '../../icons';
-import { useNavbarStyles, WhiteTooltip } from '../../styles';
+import {
+  useNavbarStyles,
+  WhiteTooltip,
+  RedTooltip
+} from '../../styles';
+import NotificationTooltip from '../notification/NotificationTooltip';
 import logo from '../../images/logo.png';
 import { defaultCurrentUser, getDefaultUser } from '../../data';
 
@@ -128,10 +142,22 @@ function Search({ history }) {
 
 function Links({ path }) {
   const classes = useNavbarStyles();
+  const [showTooltip, setTooltip] = React.useState(true);
   const [showList, setList] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(handleHideTooltip, 5000);
+    return () => {
+      clearTimeout(timeout);
+    }
+  }, []);
 
   function handleToggleList() {
     setList((prev) => !prev);
+  }
+
+  function handleHideTooltip() {
+    setTooltip(false);
   }
 
   return (
@@ -146,9 +172,17 @@ function Links({ path }) {
         <Link to='/explore'>
           {path === '/explore' ? <ExploreActiveIcon /> : <ExploreIcon />}
         </Link>
-        <div className={classes.notifications} onClick={handleToggleList}>
-          {showList ? <LikeActiveIcon /> : <LikeIcon />}
-        </div>
+        <RedTooltip
+          open={showTooltip}
+          onOpen={handleHideTooltip}
+          TransitionComponent={Zoom}
+          title={<NotificationTooltip />}
+          arrow
+        >
+          <div className={classes.notifications} onClick={handleToggleList}>
+            {showList ? <LikeActiveIcon /> : <LikeIcon />}
+          </div>
+        </RedTooltip>
         <Link to={`/${defaultCurrentUser.username}`}>
           <div className={path === `/${defaultCurrentUser.username}` ? classes.profileActive : ''}>
           </div>
