@@ -161,9 +161,13 @@ function Links({ path }) {
     setTooltip(false);
   }
 
+  function handleHideList() {
+    setList(false);
+  }
+
   return (
     <div className={classes.linksContainer}>
-      {showList && <NotificationList />}
+      {showList && <NotificationList handleHideList={handleHideList} />}
       <div className={classes.linksWrapper}>
         <Hidden xsDown>
           <AddIcon />
