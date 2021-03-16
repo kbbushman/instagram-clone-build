@@ -27,6 +27,7 @@ import {
   RedTooltip
 } from '../../styles';
 import NotificationTooltip from '../notification/NotificationTooltip';
+import NotificationList from '../notification/NotificationList';
 import logo from '../../images/logo.png';
 import { defaultCurrentUser, getDefaultUser } from '../../data';
 
@@ -162,6 +163,7 @@ function Links({ path }) {
 
   return (
     <div className={classes.linksContainer}>
+      {showList && <NotificationList />}
       <div className={classes.linksWrapper}>
         <Hidden xsDown>
           <AddIcon />
