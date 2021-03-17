@@ -162,6 +162,7 @@ function Links({ path }) {
   }
 
   function handleHideList() {
+    console.log('Hide list')
     setList(false);
   }
 
