@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNProgress } from '@tanem/react-nprogress';
 import { Link, useHistory } from 'react-router-dom';
 import {
   AppBar,
@@ -19,7 +20,6 @@ import {
   ExploreActiveIcon,
   HomeIcon,
   HomeActiveIcon,
-
 } from '../../icons';
 import {
   useNavbarStyles,
@@ -34,20 +34,28 @@ import { defaultCurrentUser, getDefaultUser } from '../../data';
 function Navbar({ minimalNavbar }) {
   const classes = useNavbarStyles();
   const history = useHistory();
+  const [isLoadingPage, setLoadingPage] = React.useState(true);
   const path = history.location.pathname;
 
+  React.useEffect(() => {
+    setLoadingPage(false);
+  }, [path]);
+
   return (
-    <AppBar className={classes.appBar}>
-      <section className={classes.section}>
-        <Logo />
-        {!minimalNavbar && (
-          <>
-            <Search history={history} />
-            <Links path={path} />
-          </>
-        )}
-      </section>
-    </AppBar>
+    <>
+      <Progress isAnimating={isLoadingPage} />
+      <AppBar className={classes.appBar}>
+        <section className={classes.section}>
+          <Logo />
+          {!minimalNavbar && (
+            <>
+              <Search history={history} />
+              <Links path={path} />
+            </>
+          )}
+        </section>
+      </AppBar>
+    </>
   );
 }
 
@@ -203,5 +211,29 @@ function Links({ path }) {
   );
 }
 
+function Progress({ isAnimating }) {
+  const classes = useNavbarStyles();
+  const {animationDuration, isFinished, progress} = useNProgress({ isAnimating });
+
+  return (
+    <div
+      className={classes.progressContainer}
+      style={{
+        opacity: isFinished ? 0 : 1,
+        transition: `opacity ${animationDuration}ms linear`,
+      }}
+    >
+      <div
+        className={classes.progressBar}
+        style={{
+          marginLeft: `${(-1 + progress) * 100}%`,
+          transition: `margin-left ${animationDuration}ms linear`
+        }}
+      >
+        <div className={classes.progressBackground} />
+      </div>
+    </div>
+  );
+}
 
 export default Navbar;
