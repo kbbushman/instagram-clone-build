@@ -12,13 +12,19 @@ import {
 } from '../../icons';
 import { usePostStyles } from '../../styles';
 import UserCard from '../shared/UserCard';
+import PostSkeleton from './PostSkeleton';
 import OptionsDialog from '../shared/OptionsDialog';
 import { defaultPost } from '../../data';
 
+
 function Post() {
   const classes = usePostStyles();
+  const [loading, setLoading] = React.useState(true);
   const [showOptionsDialog, setOptionsDialog] = React.useState(false);
   const { id, media, likes, user, caption, comments } = defaultPost;
+
+  setTimeout(() => setLoading(false), 2000);
+  if (loading) return <PostSkeleton />
 
   return (
     <div className={classes.postContainer}>
