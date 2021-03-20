@@ -7,4 +7,4 @@
 - Apollo Client
 - Material UI
 
-(View Demo)[https://instagram-clone-build.vercel.app/]
+[View Demo](https://instagram-clone-build.vercel.app/)
