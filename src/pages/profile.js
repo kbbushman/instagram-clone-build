@@ -199,11 +199,19 @@ function PostCountSection({ user }) {
   );
 }
 
-function NameBioSection() {
+function NameBioSection({ user }) {
+  const classes = useProfilePageStyles();
+
   return (
-    <>
-      NameBioSection
-    </>
+    <section className={classes.section}>
+      <Typography className={classes.typography}>{user.name}</Typography>
+      <Typography>{user.bio}</Typography>
+      <a href={user.website} target='_blank' rel='noopener noreferrer'>
+        <Typography color='secondary' className={classes.typography}>
+          {user.website}
+        </Typography>
+      </a>
+    </section>
   );
 }
 
