@@ -37,7 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "now-build": "react-scripts build",
-    "deploy": "npx now --target production"
+    "deploy": "npx vercel --target production"
   },
   "eslintConfig": {
     "extends": [
