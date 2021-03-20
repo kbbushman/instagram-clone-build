@@ -1,11 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Button, Card, CardContent, Dialog, DialogTitle, Divider, Hidden, Typography, Zoom } from '@material-ui/core';
+import {
+  Avatar,
+  Button,
+  Card,
+  CardContent,
+  Dialog,
+  DialogTitle,
+  Divider,
+  Hidden,
+  Typography,
+  Zoom
+} from '@material-ui/core';
 import Layout from '../components/shared/Layout';
-import { useProfilePageStyles } from '../styles';
-import { defaultCurrentUser } from '../data';
 import ProfilePicture from '../components/shared/ProfilePicture';
+import ProfileTabs from '../components/profile/ProfileTabs';
+import { useProfilePageStyles } from '../styles';
 import { GearIcon } from '../icons';
+import { defaultCurrentUser } from '../data';
 
 function ProfilePage() {
   const isOwner = true;
@@ -54,6 +66,7 @@ function ProfilePage() {
           </Card>
         </Hidden>
         {showOptionsMenu && <OptionsMenu handleCloseMenu={handleCloseMenu} />}
+        <ProfileTabs user={defaultCurrentUser} isOwner={isOwner} />
       </div>
     </Layout>
   );
