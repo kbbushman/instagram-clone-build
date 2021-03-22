@@ -9,8 +9,11 @@ import LoginPage from './pages/login';
 import SignupPage from './pages/signup';
 import NotFoundPage from './pages/not-found';
 import PostModal from './components/post/PostModal';
+import { AuthContext } from './auth';
 
 function App() {
+  const { authState } = React.useContext(AuthContext);
+  console.log('AuthState ====== ', authState);
   const history = useHistory();
   const location = useLocation();
   let prevLocation = React.useRef(location);
